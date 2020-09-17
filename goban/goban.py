@@ -115,8 +115,10 @@ def main():
                         if len(liberties) > 0 or (group_liberties is not None and len(group_liberties) > 0):
                             board.turn()
                             board.update_liberties(added_stone)
+                            print(board.get_board(BLACK))
                         else:
                             added_stone.remove()
+
 
 if __name__ == '__main__':
     pygame.init()

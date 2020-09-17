@@ -15,7 +15,7 @@ __version__ = "0.1"
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-
+import numpy as np
 
 class Stone(object):
     def __init__(self, board, point, color):
@@ -171,6 +171,16 @@ class Board(object):
                 if stone.point in points:
                     stones.append(stone)
         return stones
+
+    def get_board(self, color):
+        board = np.zeros(shape=(19, 19), dtype=np.int)
+        for group in self.groups:
+            for stone in group.stones:
+                if color == stone.color:
+                    board[stone.point[1]-1][stone.point[0]-1] = 1
+                else:
+                    board[stone.point[1]-1][stone.point[0]-1] = -1
+        return board
 
     def turn(self):
         """Keep track of the turn by flipping between BLACK and WHITE."""
